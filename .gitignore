@@ -1,0 +1,6 @@
+# .gitignore
+.env
+chromedriver
+LICENSE.chromedriver
+old
+credentials.json
