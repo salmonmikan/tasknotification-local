@@ -1,7 +1,7 @@
 import get_manaba
 import google_calender
 
-def main(data,context):#data,contextはGCP用の空の関数。
+def main():#data,contextはGCP用の空の関数。
     report_list = get_manaba.get_manaba_report()
 
     google_calender.calender_API_get()

@@ -2,5 +2,6 @@
 .env
 chromedriver
 LICENSE.chromedriver
-old
 credentials.json
+token.json
+__pycache__

@@ -6,20 +6,22 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from datetime import datetime
 import inspect
+import dotenv
 
+dotenv.load_dotenv() #.envからの環境変数のロード
 
 options = Options() #関数に入れる
 
-options.add_argument('--headless')
+#options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')
 options.add_argument('--hide-scrollbars')
-options.add_argument('--single-process')
+#options.add_argument('--single-process')
 options.add_argument('--ignore-certificate-errors')
 
 
-USERNAME = '21c1166'
-PASSWORD = 'iTXLHYSY4bsWHrB'
+USER_NAME = os.environ['USER_NAME']
+PASS_WORD = os.environ['PASS_WORD']
 URL = 'https://portal.tku.ac.jp/'
 ERRORURL = 'https://portal.tku.ac.jp/portal/action/pt/f01/Uspt010111'
 
@@ -27,9 +29,8 @@ ERRORURL = 'https://portal.tku.ac.jp/portal/action/pt/f01/Uspt010111'
 def get_manaba_report():
     driver_path = (os.path.dirname(os.path.abspath(__file__)))
     driver_path = os.path.join(driver_path, 'chromedriver')
-    local_driver_path = "D:\code/tasknotification3/chromedriver.exe"
-    os.chmod(driver_path, 0o755)
-    driver = webdriver.Chrome(executable_path= driver_path, options=options)
+    local_driver_path = "D:\code/tasknotification-local/chromedriver.exe"
+    driver = webdriver.Chrome(executable_path= local_driver_path, options=options)
     driver.implicitly_wait(10)
     driver.get(URL)
     sleep(3)
@@ -42,9 +43,9 @@ def get_manaba_report():
         try:
             # ログインページにてメールアドレス/パスワードを入力・「サインイン」をクリックを入力
             username_field = driver.find_element(By.XPATH, '/html/body/div/form/table[1]/tbody/tr[1]/td[2]/input')
-            username_field.send_keys(USERNAME)
+            username_field.send_keys(USER_NAME)
             password_field = driver.find_element(By.XPATH, '/html/body/div/form/table[1]/tbody/tr[2]/td[2]/input')
-            password_field.send_keys(PASSWORD)
+            password_field.send_keys(PASS_WORD)
             signin_botton = driver.find_element(By.XPATH, '/html/body/div/form/table[1]/tbody/tr[4]/td/div/input')
             signin_botton.click()
             manaba_botton = driver.find_element(By.XPATH, '//*[@id="leftside"]/div[2]/div/div/div[1]/a')
