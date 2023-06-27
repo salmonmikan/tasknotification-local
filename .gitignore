@@ -1,7 +1,5 @@
 # .gitignore
 .env
 chromedriver
-LICENSE.chromedriver
-credentials.json
 token.json
 __pycache__

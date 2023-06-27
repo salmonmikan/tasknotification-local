@@ -22,14 +22,13 @@ options.add_argument('--ignore-certificate-errors')
 
 USER_NAME = os.environ['USER_NAME']
 PASS_WORD = os.environ['PASS_WORD']
+LOCAL_DRIVER_PATH = os.environ['LOCAL_DRIVER_PATH']
 URL = 'https://portal.tku.ac.jp/'
 ERRORURL = 'https://portal.tku.ac.jp/portal/action/pt/f01/Uspt010111'
 
 
 def get_manaba_report():
-    driver_path = (os.path.dirname(os.path.abspath(__file__)))
-    driver_path = os.path.join(driver_path, 'chromedriver')
-    local_driver_path = "D:\code/tasknotification-local/chromedriver.exe"
+    local_driver_path = LOCAL_DRIVER_PATH
     driver = webdriver.Chrome(executable_path= local_driver_path, options=options)
     driver.implicitly_wait(10)
     driver.get(URL)
