@@ -13,6 +13,8 @@ import googleapiclient.discovery
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 creds = None
 
+CALENDER_ID = os.environ['']
+
 def calender_API_get():
     global creds
     """
